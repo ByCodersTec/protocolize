@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ComplaintTest < ActiveSupport::TestCase
+class MyModelTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

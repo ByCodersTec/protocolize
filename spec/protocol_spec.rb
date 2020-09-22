@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Protocolize::Protocol do
-  let(:origin_project) { 'ByCoders' }
-  let(:complaint) { Complaint.create(name: "My Complaint") }
-  let(:protocol)  { Protocolize::Protocol.new(origin_object: complaint.id,
-                                              origin_project: origin_project,
-                                              origin_class: complaint.class.name) }
+  let(:origin_project)  { 'ByCoders' }
+  let(:my_model)        { MyModel.create(name: "My model") }
+  let(:protocol)        { Protocolize::Protocol.new(origin_object: my_model.id,
+                                                    origin_project: origin_project,
+                                                    origin_class: my_model.class.name) }
 
   describe '.set_protocol' do
     it 'should call set_protocol after initialize a model' do
