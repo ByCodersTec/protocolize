@@ -26,6 +26,12 @@ Create the protocols table:
 rake db:migrate
 ```
 
+## Test
+
+```ruby
+rspec spec
+```
+
 ## Usage
 
 Include module to `app/models/application_record.rb`:
