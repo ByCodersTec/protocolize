@@ -7,6 +7,38 @@ describe Protocolize::Protocol do
                                               origin_project: origin_project,
                                               origin_class: complaint.class.name) }
 
+  describe '.set_protocol' do
+    it 'should call set_protocol after initialize a model' do
+      expect(protocol).to receive(:set_protocol)
+
+      protocol.run_callbacks(:initialize) 
+    end
+
+    it 'should setted the protocol' do
+      expect(protocol.protocol).to_not be_empty
+    end
+
+    it 'should contains timestamp' do
+      expect(protocol.protocol.include?(protocol.created_at.strftime('%Y%m%d%H%M%S'))).to be_truthy
+    end
+
+    it 'should contains random' do
+      expect(protocol.protocol.include?(protocol.random)).to be_truthy
+    end
+
+    it 'should ends with random' do
+      expect(protocol.protocol.end_with?(protocol.random)).to be_truthy
+    end
+
+    it 'should contains project code' do
+      expect(protocol.protocol.include?(origin_project.first(3).upcase)).to be_truthy
+    end
+
+    it 'should start with project code' do
+      expect(protocol.protocol.start_with?(origin_project.first(3).upcase)).to be_truthy
+    end
+  end
+
   describe '.get_random' do
     it 'returns string' do
       expect(protocol.get_random.class).to be_eql(String)
@@ -51,7 +83,7 @@ describe Protocolize::Protocol do
     end
 
     it 'returns a string with the first 3 uppercase characters of project name' do
-      expect(protocol.get_project_code).to be_eql(origin_project.upcase.first(3))
+      expect(protocol.get_project_code).to be_eql(origin_project.first(3).upcase)
     end
   end
 end
