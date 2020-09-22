@@ -4,22 +4,11 @@ module Protocolize
 
     included do
       def generate_protocol
-        random = SecureRandom.alphanumeric(6).upcase
+        protocol = Protocol.new(origin_object: self.id,
+                                origin_class: self.class.name,
+                                origin_project: Rails.application.class.module_parent_name)
 
-        created_at = DateTime.now.utc
-        timestamp  = created_at.strftime('%Y%m%d%H%M%S')
-
-        origin_project  = Rails.application.class.module_parent_name
-        project         = origin_project.first(3).upcase
-        
-        Protocol.create(
-          random: random,
-          created_at: created_at,
-          origin_object: self.id,
-          origin_class: self.class.to_s,
-          origin_project: origin_project,
-          protocol: "#{project}#{timestamp}#{random}"
-        )
+        protocol.save
       end
     end
 
