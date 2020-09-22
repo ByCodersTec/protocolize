@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_18_180544) do
+ActiveRecord::Schema.define(version: 2020_09_22_105543) do
 
   create_table "complaints", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "protocols", force: :cascade do |t|
+    t.string "origin_class"
+    t.integer "origin_object"
+    t.string "origin_project"
+    t.string "random"
+    t.string "protocol"
+    t.datetime "created_at"
+    t.index ["protocol"], name: "index_protocols_on_protocol"
   end
 
 end

@@ -1,8 +1,5 @@
 # Protocolize
-Short description and motivation.
-
-## Usage
-How to use my plugin.
+Generate protocol number for new records, tickets, issues, documents and everything you need to identify. 
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -11,18 +8,23 @@ Add this line to your application's Gemfile:
 gem 'protocolize'
 ```
 
-And then execute:
-```bash
-$ bundle
+Then install the dependencies:
+
+```
+bundle
 ```
 
-Or install it yourself as:
-```bash
-$ gem install protocolize
+Copy the migration to project:
+
+```
+rails g protocolize:install
 ```
 
-## Contributing
-Contribution directions go here.
+Create the protocols table:
 
-## License
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+```
+rake db:migrate
+```
+
+## Usage
+
