@@ -1,5 +1,5 @@
 class ApplicationRecord < ActiveRecord::Base
-  include Protocolize::ActsAsProtocolize
+  include Protocolize::ActsAsProtocolable
 
   self.abstract_class = true
 end

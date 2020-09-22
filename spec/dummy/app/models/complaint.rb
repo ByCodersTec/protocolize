@@ -1,3 +1,3 @@
 class Complaint < ApplicationRecord
-  acts_as_protocolize
+  acts_as_protocolable
 end

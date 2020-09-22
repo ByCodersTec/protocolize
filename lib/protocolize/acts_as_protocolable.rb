@@ -1,18 +1,18 @@
 module Protocolize
-  module ActsAsProtocolize
+  module ActsAsProtocolable
     extend ActiveSupport::Concern
 
     included do
-      def protocolize
+      def generate_protocol
         random = SecureRandom.alphanumeric(6).upcase
 
         created_at = DateTime.now.utc
         timestamp  = created_at.strftime('%Y%m%d%H%M%S')
 
-        origin_project  = Rails.application.class.parent_name
+        origin_project  = Rails.application.class.module_parent_name
         project         = origin_project.first(3).upcase
         
-        Protocolize::Base.create(
+        Protocol.create(
           random: random,
           created_at: created_at,
           origin_object: self.id,
@@ -22,10 +22,10 @@ module Protocolize
         )
       end
     end
- 
-    class_methods do
-      def acts_as_protocolize(options = {})
-        after_create :protocolize
+
+    class_methods do      
+      def acts_as_protocolable(options = {})
+        after_create :generate_protocol
       end
     end
   end
