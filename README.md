@@ -53,3 +53,8 @@ end
 ```
 
 That's it! Everytime the model configured to act as protocolable was created a protocol will be created together.
+
+
+## Helpful links
+[Gem Patterns](https://ankane.org/gem-patterns)
+[How To Build A Ruby Gem With Bundler, Test-Driven Development, Travis CI And Coveralls, Oh My!](https://www.smashingmagazine.com/2014/04/how-to-build-a-ruby-gem-with-bundler-test-driven-development-travis-ci-and-coveralls-oh-my)
