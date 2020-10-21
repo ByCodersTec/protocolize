@@ -7,7 +7,6 @@ module Protocolize
         protocol = Protocol.new(origin_object: self.id,
                                 origin_class: self.class.name,
                                 origin_project: Rails.application.class.module_parent_name)
-
         protocol.save
       end
     end

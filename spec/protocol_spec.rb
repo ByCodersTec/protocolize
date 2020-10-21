@@ -1,17 +1,15 @@
 require 'spec_helper'
 
 describe Protocolize::Protocol do
-  let(:origin_project)  { 'ByCoders' }
-  let(:my_model)        { MyModel.create(name: "My model") }
-  let(:protocol)        { Protocolize::Protocol.new(origin_object: my_model.id,
-                                                    origin_project: origin_project,
-                                                    origin_class: my_model.class.name) }
+  let(:my_model) { MyModel.create(name: "My model") }
+  let(:protocol) { Protocolize::Protocol.find_by(origin_object: my_model) }
+
 
   describe '.set_protocol' do
     it 'should call set_protocol after initialize a model' do
       expect(protocol).to receive(:set_protocol)
 
-      protocol.run_callbacks(:initialize) 
+      protocol.run_callbacks(:save) 
     end
 
     it 'should setted the protocol' do
@@ -31,11 +29,11 @@ describe Protocolize::Protocol do
     end
 
     it 'should contains project code' do
-      expect(protocol.protocol.include?(origin_project.first(3).upcase)).to be_truthy
+      expect(protocol.protocol.include?(Rails.application.class.module_parent_name.first(3).upcase)).to be_truthy
     end
 
     it 'should start with project code' do
-      expect(protocol.protocol.start_with?(origin_project.first(3).upcase)).to be_truthy
+      expect(protocol.protocol.start_with?(Rails.application.class.module_parent_name.first(3).upcase)).to be_truthy
     end
   end
 
@@ -83,7 +81,7 @@ describe Protocolize::Protocol do
     end
 
     it 'returns a string with the first 3 uppercase characters of project name' do
-      expect(protocol.get_project_code).to be_eql(origin_project.first(3).upcase)
+      expect(protocol.get_project_code).to be_eql(Rails.application.class.module_parent_name.first(3).upcase)
     end
   end
 end

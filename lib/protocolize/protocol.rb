@@ -1,6 +1,6 @@
 module Protocolize
   class Protocol < ActiveRecord::Base
-    after_initialize :set_protocol
+    before_save :set_protocol
 
     def set_protocol
       self.random     = get_random
